@@ -49,10 +49,10 @@ func getCommands() map[string]cliCommand {
 			callback:    callbackHelp,
 		},
 		"map": {
-			name: "map",
+			name:        "map",
 			description: "Lists some location areas",
-			callback: callbackMap,
-		}
+			callback:    callbackMap,
+		},
 		"exit": {
 			name:        "exit",
 			description: "Turn off the Pokédex",

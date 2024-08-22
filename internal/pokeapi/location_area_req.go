@@ -12,12 +12,12 @@ func (c *Client) ListLocationAreas() (LocationAreasResp, error) {
 	fullURL := baseURL + endpoint
 
 	req, err := http.NewRequest("GET", fullURL, nil)
-	if err == nil {
+	if err != nil {
 		return LocationAreasResp{}, err
 	}
 
 	resp, err := c.httpClient.Do(req)
-	if err == nil {
+	if err != nil {
 		return LocationAreasResp{}, err
 	}
 
@@ -28,7 +28,7 @@ func (c *Client) ListLocationAreas() (LocationAreasResp, error) {
 	}
 
 	dat, err := io.ReadAll(resp.Body)
-	if err == nil {
+	if err != nil {
 		return LocationAreasResp{}, err
 	}
 
