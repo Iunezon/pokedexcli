@@ -3,20 +3,18 @@ package main
 import (
 	"fmt"
 	"log"
-
-	"github.com/Iunezon/pokedexcli/internal/pokeapi"
 )
 
-func callbackMap() error {
-	pokeapiClient := pokeapi.NewClient()
-
-	resp, err := pokeapiClient.ListLocationAreas()
+func callbackMap(cfg *config, args ...string) error {
+	resp, err := cfg.pokeapiClient.ListLocationAreas(cfg.nextLocationAreaURL)
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println("Location areas:")
 	for _, area := range resp.Results {
-		fmt.Printf(" – %s\n", area)
+		fmt.Printf(" – %s\n", area.Name)
 	}
+	cfg.nextLocationAreaURL = resp.Next
+	cfg.prevLocationAreaURL = resp.Previous
 	return nil
 }
